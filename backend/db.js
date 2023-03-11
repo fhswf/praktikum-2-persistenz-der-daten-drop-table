@@ -20,17 +20,21 @@ export default class DB {
 
     queryById(id) {
         // TODO: Implement queryById
+        return collection.find({id: id}).toArray();
     }
 
     update(id, order) {
         // TODO: Implement update
+        return collection.update({id: id}, order);
     }
 
     delete(id) {
         // TODO: Implement delete
+        return collection.deleteOne({id: id});
     }
 
     insert(order) {
         // TODO: Implement insert
+        return collection.insertOne(order);
     }
 }

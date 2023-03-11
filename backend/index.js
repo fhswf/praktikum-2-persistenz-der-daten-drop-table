@@ -30,9 +30,25 @@ app.get('/todos', async (req, res) => {
 //
 // Implement the following routes:
 // GET /todos/:id
+app.get('/todos/:id', async (req, res) => {
+    let todo = await db.queryById(req.params.id);
+    res.send(todo);
+});
 // POST /todos
+app.post('/todos', async (req, res) => {
+    let todo = await db.insert(req.body);
+    res.send(todo);
+});
 // PUT /todos/:id
+app.put('/todos/:id', async (req, res) => {
+    let todo = await db.update(req.params.id, req.body);
+    res.send(todo);
+});
 // DELETE /todos/:id
+app.delete('/todos/:id', async (req, res) => {
+    let todo = await db.delete(req.params.id);
+    res.send(todo);
+});
 
 
 initDB()
