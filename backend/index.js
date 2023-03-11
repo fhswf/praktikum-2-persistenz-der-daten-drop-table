@@ -30,7 +30,7 @@ app.get('/todos', async (req, res) => {
 //
 // Implement the following routes:
 // GET /todos/:id
-app.get('/todos/:id', async (req, res) => {
+app.get('/todos/:_id', async (req, res) => {
     let todo = await db.queryById(req.params.id);
     res.send(todo);
 });

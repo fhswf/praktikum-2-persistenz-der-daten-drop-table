@@ -20,7 +20,7 @@ export default class DB {
 
     queryById(id) {
         // TODO: Implement queryById
-        return collection.find({id: id}).toArray();
+        return collection.findOne({id: id});
     }
 
     update(id, order) {
