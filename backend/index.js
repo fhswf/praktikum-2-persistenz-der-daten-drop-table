@@ -1,12 +1,17 @@
 import express from 'express';
 import DB from './db.js'
+import bodyParser from 'body-parser';
 
 const PORT = process.env.PORT || 3000;
 
+
 /** Zentrales Objekt für unsere Express-Applikation */
 const app = express();
+
 // Parse JSON request bodies
-//app.use(express.json());
+app.use(bodyParser.json());
+
+
 
 /** global instance of our database */
 let db = new DB();
@@ -39,17 +44,18 @@ app.get('/todos/:id', async (req, res) => {
 
 // POST /todos
 app.post('/todos', async (req, res) => {
-    console.log("Request Body:", req).body;
+    console.log("Request Body:", req.body);
     let todo = await db.insert(req.body);
     res.send(todo);
 });
+
 // PUT /todos/:id
 app.put('/todos/:id', async (req, res) => {
-    console.log('Request:', req);
-    console.log('Request body:', req.body);
+    console.log("Request Body:", req.body);
     let todo = await db.update(req.params.id, req.body);
     res.send(todo);
 });
+
 // DELETE /todos/:id
 app.delete('/todos/:id', async (req, res) => {
     let todo = await db.delete(req.params.id);
